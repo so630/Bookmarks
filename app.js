@@ -34,7 +34,7 @@ userSchema.plugin(passportLocalMongoose)
 
 mongoose.connect('mongodb+srv://admin-soham:<password>@cluster0.rgrzw.mongodb.net/BookmarksDB')
 
-let User = mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema)
 
 
 app.get('/', function(req, res) {
