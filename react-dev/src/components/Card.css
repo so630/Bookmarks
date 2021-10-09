@@ -1,0 +1,84 @@
+.link {
+    color: #1f337e;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #3356d6;
+}
+
+.link-h1 {
+    display: block;
+    font-size: 15px;
+}
+
+.card {
+    padding: 15px 50px;
+    display: inline-block;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: relative;
+    top: 0;
+    float: right;
+}
+
+.card-form {
+    padding: 15px 50px;
+    display: inline-block;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-right: 2%;
+    position: fixed;
+    bottom: 15px;
+}
+
+.form {
+    position: fixed;
+    bottom: 15px;
+    float: left;
+}
+
+.header {
+    font-size: 35px;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+.cancel {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.cancel:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    cursor: pointer;
+}
+
+.cancel:active {
+    background-color: #035dbe;
+    border-color: #0059b8;
+}
