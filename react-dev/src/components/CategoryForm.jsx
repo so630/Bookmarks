@@ -20,7 +20,7 @@ function CategoryForm(props) {
         <div className="card-form">
             <input className="form-control" style={{marginBottom: '10px'}} onChange={onChange} placeholder="Enter the title..." type="text"/>
             <button className="btn btn-primary" onClick={submit} style={{float: 'right', padding: '6px 14px'}}>+</button>
-            <button className="cancel" onClick={props.cancel} style={{float: 'left'}}>Cancel</button> 
+            <button className="cancel" onClick={props.cancel} style={{float: 'left'}}>Cancel</button>
         </div>
     )
 }

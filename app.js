@@ -32,12 +32,13 @@ let userSchema = new mongoose.Schema({
 })
 userSchema.plugin(passportLocalMongoose)
 
-mongoose.connect('mongodb+srv://admin-soham:<password>@cluster0.rgrzw.mongodb.net/BookmarksDB')
+mongoose.connect('mongodb+srv://admin-soham:soham@cluster0.rgrzw.mongodb.net/BookmarksDB')
 
 let User = mongoose.model('User', userSchema)
 
 
 app.get('/', function(req, res) {
+    console.log('howwowoowowow')
     res.sendFile(__dirname +'/views/home.html');
 })
 
@@ -56,12 +57,11 @@ app.post('/signin', function(req, res) {
             console.log(err)
             res.redirect('/')
         } else {
-            passport.authenticate('local')(req, res, () => {
-                res.cookie('username', req.body.email, {
-                    maxAge: 24 * 60 * 60
-                })
-                res.redirect('/bookmarks')
-            });
+            passport.authenticate('local');
+            res.cookie('username', req.body.email, {
+                maxAge: 24 * 10000000000
+            })
+            res.redirect('/bookmarks')
         }
     });
 })
@@ -76,12 +76,11 @@ app.post('/register', function(req, res) {
             console.log(err);
             res.redirect('/');
         } else {
-            passport.authenticate('local')(req, res, () => {
-                res.cookie('username', req.body.email, {
-                    maxAge: 24 * 10000000000
-                })
-                res.redirect('/bookmarks')
+            passport.authenticate('local')
+            res.cookie('username', req.body.email, {
+                maxAge: 24 * 10000000000
             })
+            res.redirect('/bookmarks')
         }
     })
 })
