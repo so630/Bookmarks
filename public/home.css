@@ -1,0 +1,32 @@
+.header {
+    padding: 10% 20%;
+    height: 520px;
+    background-color: #1300a9;
+}
+
+.title-card {
+    border: 1px solid black;
+    height: inherit;
+    background-color: #1300a9;
+}
+
+.title-card h1 {
+    font-size: 4.5rem;
+}
+
+.title-card p {
+    font-family: 'titillium-Web';
+    font-size: 1rem;
+}
+
+body {
+    font-family: 'Montserrat';
+    background-color: #1300a9;
+    height: 700px;
+}
+
+.image-card {
+    background-image: url('/YE.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
