@@ -23,7 +23,7 @@
     margin-right: 2%;
     position: relative;
     top: 0;
-    float: right;
+    margin-top: 2%;
 }
 
 .card-form {
@@ -36,12 +36,14 @@
     margin-right: 2%;
     position: fixed;
     bottom: 15px;
+    left: 15px;
 }
 
 .form {
     position: fixed;
     bottom: 15px;
     float: left;
+    left: 15px;
 }
 
 .header {
