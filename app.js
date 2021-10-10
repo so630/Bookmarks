@@ -3,9 +3,10 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session');
 const passportLocalMongoose = require('passport-local-mongoose')
+const cookieParser = require('cookie-parser')
 let app = express()
 
-
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(__dirname + '/public'))
@@ -86,7 +87,7 @@ app.post('/register', function(req, res) {
 })
 
 app.get('/bookmarks', function(req, res) {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.cookies.username) {
         res.sendFile(__dirname + '/views/index.html');
     } else {
         res.redirect('/')
