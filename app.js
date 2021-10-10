@@ -33,7 +33,7 @@ let userSchema = new mongoose.Schema({
 })
 userSchema.plugin(passportLocalMongoose)
 
-mongoose.connect('mongodb+srv://admin-soham:<password>@cluster0.rgrzw.mongodb.net/BookmarksDB')
+mongoose.connect('mongodb+srv://admin-soham:soham@cluster0.rgrzw.mongodb.net/BookmarksDB')
 
 let User = mongoose.model('User', userSchema)
 
