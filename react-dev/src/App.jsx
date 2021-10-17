@@ -31,6 +31,7 @@ function App() {
     }, [])
     let [isClick, setClick] = useState(false);
     let [links, setLinks] = useState(data);
+    let [isEdit, setEdit] = useState(false);
 
     function onClick() {
         setClick(true)
@@ -75,6 +76,48 @@ function App() {
        })
     }
 
+    function del(index, header) {
+        setLinks(prev => {
+            let arr = prev;
+            arr.forEach(obj => {
+                if (obj.title == header) {
+                    obj.links.splice(index, 1);
+                }
+            })
+
+            fetch('/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: username, data: [...arr]})
+            }).then((res) => {
+                console.log('req sent')
+            })
+
+            return [...arr];
+        })
+    }
+
+    function delc(header) {
+        setLinks(prev => {
+            let arr = prev;
+            arr.forEach((obj, i) => {
+                if (obj.title == header) {
+                    arr.splice(i, 1);
+                }
+            })
+
+            fetch('/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: username, data: [...arr]})
+            }).then((res) => {
+                console.log('req sent')
+            })
+
+            return [...arr];
+        })
+    }
+
     function change() {
         var objToday = new Date(),
             weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
@@ -100,9 +143,14 @@ function App() {
             <h1 style={{fontSize: '40px', textAlign: 'center', display: 'block', float: 'center'}}>Bookmarks</h1>
             <h3 style={{fontSize: '25px', position: 'fixed', bottom: '15px', right: '10px'}}>{date}</h3>
             {links.map(link => {
-                return <Card links={link.links} header={link.title} update={update}/>
+                return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
             })}
-            {!isClick ? <button class="add-category" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
+            <div style={{position: 'fixed', bottom: '15px', left: '10px', display: 'inline-flex'}}>
+                {/* <div style={{display: 'inline-flex'}}> */}
+                    {!isClick ? <button class="add-category" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
+                {/* </div> */}
+                <button class="btn btn-primary edit" onClick={() => isEdit ? setEdit(false) : setEdit(true)}>{isEdit ? "❌" : 'Edit'}</button>
+            </div>
         </>
     )
 }

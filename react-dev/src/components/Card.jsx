@@ -27,6 +27,24 @@ function Card(props) {
         }
     }
 
+    function del(event) {
+        // make the button first
+        let title = event.target.parentNode.parentNode.childNodes[0].textContent;
+        // let link = event.target.parentNode.parentNode.childNodes[0].href;
+        let index = -1;
+        props.links.forEach((link, i) => {
+            if (link.title == title) {
+                index = i;
+            }
+        })
+        let c = window.confirm("Are you sure you want to delete this link?")
+        if (!c) {
+            return;
+        }
+        props.setEdit(false)
+        props.del(index, props.header);
+    }
+
     function update() {
         let inputs = document.querySelectorAll('.form-control');
         inputs.forEach(input => {
@@ -34,6 +52,17 @@ function Card(props) {
         })
         props.update(link, props.header);
     }
+
+    function delc() {
+        let c = window.confirm("Are you sure you want to delete this category?")
+        if (!c) {
+            return;
+        }
+        props.setEdit(false)
+        props.delc(props.header);
+    }
+
+    
 
     function click() {
         if (isClick) {
@@ -45,17 +74,18 @@ function Card(props) {
 
     return (
         <div className="card">
+            {props.isEdit ? <a className="delete category" onClick={delc}><i class="fas fa-times"></i></a> : null}
             <h1 className="header">{props.header}</h1>
             <hr></hr>
             {props.links.map((link, i) => {
                 return (
                     <h1 className="link-h1">
                         <a key={i} className="link" href={link.link} target="_blank">{link.title}</a>
+                        {props.isEdit ? <a key={i} className="delete" onClick={del}><i class="far fa-trash-alt"></i></a> : null}
                     </h1>
                 )
             })}
             {props.links.length == 0 ? null : <hr></hr>}
-            {/* <Form onChange={onChange} update={update} /> */}
 
             {!isClick ? <button className="btn btn-primary" onClick={click}>Add Link</button> : <Form onChange={onChange} update={update} cancel={click}/>}
         </div>
