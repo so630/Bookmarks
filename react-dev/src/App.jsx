@@ -142,9 +142,13 @@ function App() {
         <>
             <h1 style={{fontSize: '40px', textAlign: 'center', display: 'block', float: 'center'}}>Bookmarks</h1>
             <h3 style={{fontSize: '25px', position: 'fixed', bottom: '15px', right: '10px'}}>{date}</h3>
-            {links.map(link => {
-                return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
-            })}
+            <div style={{display: 'block', width: '100%'}}>
+                <div style={{display: 'flex', alignItems: 'start', flexWrap: 'wrap'}}>
+                    {links.map(link => {
+                        return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
+                    })}
+                </div>
+            </div>
             <div style={{position: 'fixed', bottom: '15px', left: '10px', display: 'inline-flex'}}>
                 {/* <div style={{display: 'inline-flex'}}> */}
                     {!isClick ? <button class="add-category" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
