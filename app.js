@@ -39,15 +39,21 @@ let User = mongoose.model('User', userSchema)
 
 
 app.get('/', function(req, res) {
-    console.log('howwowoowowow')
+    console.log(req.isAuthenticated());
     res.sendFile(__dirname +'/views/home.html');
 })
 
 app.get('/signin', function(req, res) {
+    if (req.isAuthenticated() && req.cookies.username) {
+        res.redirect('/bookmarks')
+    }
     res.sendFile(__dirname +'/views/signin.html');
 })
 
 app.post('/signin', function(req, res) {
+
+    
+
     const user = new User({
         username: req.body.email, 
         password: req.body.password
@@ -68,6 +74,9 @@ app.post('/signin', function(req, res) {
 })
 
 app.get('/register', function(req, res) {
+    if (req.isAuthenticated() && req.cookies.username) {
+        res.redirect('/bookmarks')
+    }
     res.sendFile(__dirname +'/views/register.html');
 })
 
@@ -77,11 +86,18 @@ app.post('/register', function(req, res) {
             console.log(err);
             res.redirect('/');
         } else {
-            passport.authenticate('local')
-            res.cookie('username', req.body.email, {
-                maxAge: 24 * 10000000000
+            req.login(user, (err) => {
+                if (err) {
+                    console.log(err);
+                    res.redirect('/');
+                } else {
+                    passport.authenticate('local');
+                    res.cookie('username', req.body.email, {
+                        maxAge: 24 * 10000000000
+                    })
+                    res.redirect('/bookmarks')
+                }
             })
-            res.redirect('/bookmarks')
         }
     })
 })

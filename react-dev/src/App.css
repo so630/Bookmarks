@@ -27,6 +27,12 @@
     bottom: 0px;
 }
 
+@media (max-width: 1440px) {
+    .date {
+        content: none!important;
+    }
+}
+
 .add-category:hover {
     color: #fff;
     background-color: #0069d9;

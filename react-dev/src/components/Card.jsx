@@ -74,7 +74,8 @@ function Card(props) {
 
     return (
         <div className="card">
-            {props.isEdit ? <a className="delete category" onClick={delc}><i class="fas fa-times"></i></a> : null}
+            {props.isEdit ? <a className="delete category" style={{color: '#dc3545'}} onClick={delc}><i class="fas fa-times"></i></a> : null}
+            <i class="fas fa-bookmark" style={{position: 'absolute', top: '0', left: '15px'}}></i>
             <h1 className="header">{props.header}</h1>
             <hr></hr>
             {props.links.map((link, i) => {
@@ -87,7 +88,7 @@ function Card(props) {
             })}
             {props.links.length == 0 ? null : <hr></hr>}
 
-            {!isClick ? <button className="btn btn-primary" onClick={click}>Add Link</button> : <Form onChange={onChange} update={update} cancel={click}/>}
+            {!isClick ? <button className="btn btn-secondary" onClick={click}>Add Link</button> : <Form onChange={onChange} update={update} cancel={click}/>}
         </div>
     )
 }
@@ -97,8 +98,8 @@ function Form(props) {
         <>
             <input className="form-control" autoComplete="off" name="link" onChange={props.onChange} style={{marginBottom: '10px'}} placeholder="Link..."/>
             <input className="form-control" autoComplete="off" name="title" limit="24" onChange={props.onChange} style={{marginBottom: '10px'}} placeholder="Title..."/>
-            <button className="btn btn-primary" style={{marginRight: '10px'}} onClick={props.update}>Add Link</button>
-            <button class="btn btn-primary" onClick={props.cancel}>Cancel</button>
+            <button className="btn btn-secondary" style={{marginRight: '10px'}} onClick={props.update}>Add Link</button>
+            <button class="btn btn-secondary" onClick={props.cancel}>Cancel</button>
         </>
     )
 }

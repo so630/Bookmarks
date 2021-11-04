@@ -3,43 +3,61 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bookmark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bookmarks</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1300a9; font-size: 20px">
-        <a class="navbar-brand" href="#" style="font-size: 25px;">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Bookmarks <img class="logo floating" src="loupe.svg" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"
+            style="font-size: 20px; position: relative; right: 50px;">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" href="/register">Register <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signin">Signin</a>
+                    <a class="nav-link" href="/signin">Sign in</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <div class="header">
-        <div class="title-card">
-            <div style="width: 50%; height: inherit; float: left; background-color: #f85f7b">
 
-            </div>
-            <div style="width: 50%; height: inherit; float: right; padding-top: 20px; position: relative; top: 0px; background-color: white;">
-                <h1 style="float: left; margin-left: 2%">Bookmarks made easier</h1>
-                <p style="float: left; margin-left: 2%; font-size: 2rem">At Bookmark co. we are dedicated to making
-                    bookmarking easier</p>
-                <a href="/register" class="btn btn-primary" style="padding: 10px 20px; margin-left: 10px; margin-top: 20%; font-size: 20px;">Register >></a>
-            </div>
+    <div class="main-heading" style="display: inline;">
+        <h1 style="font-size: 60px;">We organise your bookmarks,</h1><br>
+        <h1 style="font-size: 60px;"> for your ease of search</h1>
+    </div>
+    
+    
+
+    <div class="informations-div">
+        <h1 class="heading">What We Provide</h1>
+        <div class="row" style="margin-top: 70px">
+            <ul>
+                <li><h3 class="card-title" style="margin-bottom: 20px;">Organise Your Bookmarks</h3></li>
+                <li><h3 class="card-title">Categorise your bookmarks for ease of access</h3></li>
+                <li><h3 class="card-title">Bookmark one website, and all your bookmarks are organised</h3></li>
+            </ul>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
 
 </body>
 
