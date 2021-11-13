@@ -53,6 +53,20 @@
     margin-top: 2%;
 }
 
+.header-input {
+    background-color: transparent;
+    text-align: center;
+    border: none;
+    font-size: 28px;
+    padding: none;
+    position: relative;
+    right: 9%;
+}
+
+.header-input:focus {
+    outline: none;
+}
+
 @media (min-width: 1440px) {
     .card {
         width: 20%;

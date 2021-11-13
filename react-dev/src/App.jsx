@@ -3,6 +3,7 @@ import Card from './components/Card';
 import {useEffect, useState} from 'react';
 import CategoryForm from './components/CategoryForm';
 import Cookies from 'universal-cookie';
+import ReactToPrint from 'react-to-print';
 
 const cookie = new Cookies();
 
@@ -118,23 +119,48 @@ function App() {
         })
     }
 
+    function changeHeader(first, second) {
+        setLinks(prev => {
+            let arr = prev;
+            arr.forEach((obj, i) => {
+                if (obj.title === first) {
+                    obj.title = second;
+                }
+            })
+
+            fetch('/update', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username: username, data: [...arr]})
+            })
+
+            return [...arr];
+        })
+    }
+
     return (
         <>
             <h1 style={{fontSize: '40px', textAlign: 'center', display: 'block', float: 'center', fontFamily: "'McLaren', cursive", fontSize: '45px'}}><em>Bookmarks</em></h1>
-            <div style={{display: 'block', width: '100%'}}>
-                <div style={{display: 'flex', alignItems: 'start', flexWrap: 'wrap'}}>
-                    {links.map(link => {
-                        return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
-                    })}
-                </div>
-            </div>
+            <Gallery links={links} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc} />
             <div style={{position: 'fixed', bottom: '15px', left: '10px', display: 'inline-flex'}}>
                 {/* <div style={{display: 'inline-flex'}}> */}
                     {!isClick ? <button class="btn btn-success" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
                 {/* </div> */}
-                <button class="btn btn-danger edit" onClick={() => isEdit ? setEdit(false) : setEdit(true)}>{isEdit ? "❌" : 'Edit'}</button>
+                <button class="btn btn-danger edit" onClick={() => isEdit ? setEdit(false) : setEdit(true)}>{isEdit ? <i class="fas fa-times"></i> : 'Edit'}</button>
             </div>
         </>
+    )
+}
+
+function Gallery({links, update, del, setEdit, isEdit, delc}) {
+    return (
+        <div style={{display: 'block', width: '100%'}}>
+            <div style={{display: 'flex', alignItems: 'start', flexWrap: 'wrap'}}>
+                {links.map(link => {
+                    return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
+                })}
+            </div>
+        </div>
     )
 }
 

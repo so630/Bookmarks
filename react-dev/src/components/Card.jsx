@@ -5,6 +5,7 @@ function Card(props) {
 
     let [link, setLink] = useState({title: '', link: ''});
     let [isClick, setClick] = useState(false);
+    let [header, setHeader] = useState(props.header);
 
     function onChange(event) {
         let name = event.target.name;
@@ -72,11 +73,16 @@ function Card(props) {
         }
     }
 
+    function handleChange(event) {
+        setHeader(event.target.value);
+        props.change(props.header, header);
+    }
+
     return (
         <div className="card">
             {props.isEdit ? <a className="delete category" style={{color: '#dc3545'}} onClick={delc}><i class="fas fa-times"></i></a> : null}
             <i class="fas fa-bookmark" style={{position: 'absolute', top: '0', left: '15px'}}></i>
-            <h1 className="header">{props.header}</h1>
+            {!props.isEdit ? <h1 className="header">{header}</h1> : <input type="text" defaultValue={header} onChange={handleChange} className="header-input" />}
             <hr></hr>
             {props.links.map((link, i) => {
                 return (

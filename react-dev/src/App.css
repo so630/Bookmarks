@@ -33,6 +33,13 @@
     }
 }
 
+.export {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    border-radius: 50px 200px 200px 50px;
+}
+
 .add-category:hover {
     color: #fff;
     background-color: #0069d9;
