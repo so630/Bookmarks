@@ -46,8 +46,8 @@ app.get('/', function(req, res) {
 app.get('/signin', function(req, res) {
     if (req.isAuthenticated() && req.cookies.username) {
         res.redirect('/bookmarks')
-    }
-    res.sendFile(__dirname +'/views/signin.html');
+    } else
+        res.sendFile(__dirname +'/views/signin.html');
 })
 
 app.post('/signin', function(req, res) {
@@ -76,8 +76,8 @@ app.post('/signin', function(req, res) {
 app.get('/register', function(req, res) {
     if (req.isAuthenticated() && req.cookies.username) {
         res.redirect('/bookmarks')
-    }
-    res.sendFile(__dirname +'/views/register.html');
+    } else
+        res.sendFile(__dirname +'/views/register.html');
 })
 
 app.post('/register', function(req, res) {
