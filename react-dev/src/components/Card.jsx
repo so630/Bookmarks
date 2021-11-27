@@ -74,9 +74,8 @@ function Card(props) {
     }
 
     function handleChange(event) {
-        event.target.width = event.target.value.length;
         setHeader(event.target.value);
-        props.change(props.header, header);
+        props.change(props.header, event.target.value);
     }
 
     return (
