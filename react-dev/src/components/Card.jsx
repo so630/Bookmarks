@@ -1,5 +1,5 @@
 import './Card.css';
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 function Card(props) {
 
@@ -74,6 +74,7 @@ function Card(props) {
     }
 
     function handleChange(event) {
+        event.target.width = event.target.value.length;
         setHeader(event.target.value);
         props.change(props.header, header);
     }
@@ -97,6 +98,10 @@ function Card(props) {
             {!isClick ? <button className="btn btn-secondary" onClick={click}>Add Link</button> : <Form onChange={onChange} update={update} cancel={click}/>}
         </div>
     )
+}
+
+function MoveCard() {
+    const ref = useRef(null)
 }
 
 function Form(props) {

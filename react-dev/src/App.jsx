@@ -10,15 +10,6 @@ const cookie = new Cookies();
 function App() {
     let username = cookie.get('username')
     let data = []
-    var objToday = new Date(),
-            weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
-            dayOfWeek = weekday[objToday.getDay()],
-            domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
-            dayOfMonth = ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
-            months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
-            curMonth = months[objToday.getMonth()],
-            curYear = objToday.getFullYear()
-    let [date, setDate] = useState(dayOfWeek + ', ' + dayOfMonth + ' ' + curMonth + ', ' + curYear)
     useEffect(() => {
         fetch('/data', {
             method: 'POST',
@@ -30,9 +21,24 @@ function App() {
             });
         })
     }, [])
+
     let [isClick, setClick] = useState(false);
     let [links, setLinks] = useState(data);
     let [isEdit, setEdit] = useState(false);
+    useEffect(() => {
+        if (isEdit) {
+            document.addEventListener('keydown', (k) => {
+                if (k.code == 13) {
+                    let r = window.confirm('Are you sure you want to confirm this edit?')
+                    if (r) {
+                        setEdit(false)
+                    }
+                }
+            })
+        } else {
+            document.addEventListener('keydown', () => {});
+        }
+    }, [isEdit])
 
     function onClick() {
         setClick(true)
@@ -119,7 +125,7 @@ function App() {
         })
     }
 
-    function changeHeader(first, second) {
+    function changeHead(first, second) {
         setLinks(prev => {
             let arr = prev;
             arr.forEach((obj, i) => {
@@ -141,7 +147,7 @@ function App() {
     return (
         <>
             <h1 style={{fontSize: '40px', textAlign: 'center', display: 'block', float: 'center', fontFamily: "'McLaren', cursive", fontSize: '45px'}}><em>Bookmarks</em></h1>
-            <Gallery links={links} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc} />
+            <Gallery links={links} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc} changeHeader={changeHead} />
             <div style={{position: 'fixed', bottom: '15px', left: '10px', display: 'inline-flex'}}>
                 {/* <div style={{display: 'inline-flex'}}> */}
                     {!isClick ? <button class="btn btn-success" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
@@ -152,12 +158,12 @@ function App() {
     )
 }
 
-function Gallery({links, update, del, setEdit, isEdit, delc}) {
+function Gallery({links, update, del, setEdit, isEdit, delc, changeHeader}) {
     return (
         <div style={{display: 'block', width: '100%'}}>
             <div style={{display: 'flex', alignItems: 'start', flexWrap: 'wrap'}}>
                 {links.map(link => {
-                    return <Card links={link.links} header={link.title} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
+                    return <Card links={link.links} header={link.title} change={changeHeader} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc}/>
                 })}
             </div>
         </div>
