@@ -117,6 +117,7 @@ app.post('/data', function(req, res) {
             console.log(err)
         } else {
             res.send(user.data);
+            console.log(user.data)
         }
     })
 })
