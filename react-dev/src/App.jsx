@@ -144,15 +144,27 @@ function App() {
         })
     }
 
+    function handleStore() {
+        localStorage.setItem('store', JSON.stringify(links))
+        alert('successfully stored bookmarks locally')
+    }
+
+    function handleLoad() {
+        let store = localStorage.getItem('store')
+        store ? setLinks(JSON.parse(store)) : alert("You cannot load from storage if you don't have anything stored")
+    }
+
     return (
         <>
             <h1 style={{fontSize: '40px', textAlign: 'center', display: 'block', float: 'center', fontFamily: "'McLaren', cursive", fontSize: '45px'}}><em>Bookmarks</em></h1>
             <Gallery links={links} update={update} del={del} setEdit={setEdit} isEdit={isEdit} delc={delc} changeHeader={changeHead} />
             <div style={{position: 'fixed', bottom: '15px', left: '10px', display: 'inline-flex'}}>
-                {/* <div style={{display: 'inline-flex'}}> */}
-                    {!isClick ? <button class="btn btn-success" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
-                {/* </div> */}
+                {!isClick ? <button class="btn btn-success" onClick={onClick}>Add Category</button> : <CategoryForm cancel={cancel} submit={submit} />}
                 <button class="btn btn-danger edit" onClick={() => isEdit ? setEdit(false) : setEdit(true)}>{isEdit ? <i class="fas fa-times"></i> : 'Edit'}</button>
+                <div style={{position: 'fixed', top: '5px', right: '5px'}}>
+                    <button class="btn btn-primary"  onClick={handleStore} style={{marginRight: '10px'}}>Store Locally</button>
+                    <button class="btn btn-primary" onClick={handleLoad}>Load from local storage</button>
+                </div>
             </div>
         </>
     )
